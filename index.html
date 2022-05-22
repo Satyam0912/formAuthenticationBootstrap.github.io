@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>user management app</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">User Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="changeActiveNavLink('HOME')" id="home-nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="changeActiveNavLink('ABOUT')" id="about-nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="changeActiveNavLink('CONTACTS')" id="contacts-nav-link">Contact
+                            Us</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="changeActiveNavLink('SIGNUP')" id="signup-nav-link">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="changeActiveNavLink('LOGIN')" id="login-nav-link">Log in</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!-- ------------------------------------------------------------------------------------------ -->
+        <!-- My jumbotron/ my home page -->
+        <div id="home-page">
+            <div class="jumbotron">
+                <h1 class="display-4">Welcome to Gaming Tournament Page</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
+                    attention
+                    to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.
+                </p>
+                <a class="btn btn-dark btn-lg" href="#" role="button">Explore More</a>
+            </div>
+            <div id="showUserData">
+                <div class="jumbotron">
+                    <h1 class="display-4" id="welcomeUser"></h1>
+                    <h1 class="display-5" id="showUserEmail"></h1>
+                    <h1 class="display-5" id="showUserCity"></h1>
+                    <h1 class="display-5" id="showUserState"></h1>
+                    <h1 class="display-5" id="showUserZipCode"></h1>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- ------------------------------------------------------------------------------------------ -->
+        <!-- sign up Page -->
+        <div id="signup-page">
+            <h1 class="display-4 mt-4" id="sign-up">Sign Up</h1>
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" onblur="validateFirstName()" id="firstName" required>
+                        <div class="valid-feedback" id="fnameValid">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="fnameInValid">
+                            Please enter Correct firstname...
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" onblur="validateLastName()" id="lastName" required>
+                        <div class="valid-feedback" id="lastNameValid">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="lastNameInValid">
+                            please enter correct lastname...
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" class="form-control" onblur="validateEmail()" id="signupEmail" required>
+                        <div class="valid-feedback" id="SignUpEmailValid">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="SignUpEmailInValid">
+                            enter valid email...
+                        </div>
+                        <div class="invalid-feedback" id="SignUpEmailAlreadyExist">
+                            Account Already Exist with this Email please login!
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" class="form-control" onblur="validateSignUpPassword()"
+                            id="signupPassword" required>
+                        <div class="valid-feedback" id="SignUpPasswordValid">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="SignUpPasswordInValid">
+                            password must have atleast 6 Characters
+                            <br>
+                            atleast one character between A-Z
+                            <br>
+                            atleast one character between a-z
+                            <br>
+                            atleast one character between 0-9
+                            <br>
+                            atleast one special character like !, #, $, %, &, +, -, @, _, ~
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cityName">City</label>
+                        <input type="text" class="form-control" onblur="validateCity()" id="cityName" required>
+                        <div class="valid-feedback" id="cityValid">
+                            Looks Good!
+                        </div>
+                        <div class="invalid-feedback" id="cityInValid">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="stateName">State</label>
+                        <select class="custom-select" id="stateName" onblur="validateState()" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                            <option value="Daman and Diu">Daman and Diu</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Lakshadweep">Lakshadweep</option>
+                            <option value="Puducherry">Puducherry</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                        <div class="valid-feedback" id="stateValid">
+                            Looks Good!
+                        </div>
+                        <div class="invalid-feedback" id="stateInvalid">
+                            Please select a valid state.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zipCode">Zip</label>
+                        <input type="number" class="form-control" onblur="validateZipCode()" id="zipCode" required>
+                        <div class="valid-feedback" id="zipValid">
+                            Looks Good!
+                        </div>
+                        <div class="invalid-feedback" id="zipInvalid">
+                            Please provide a valid zip.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="signUpCheckBox" required>
+                        <label class="form-check-label" for="signUpCheckBox">
+                            Agree to terms and conditions
+                        </label>
+                        <div class="invalid-feedback" id="signUpTnCInvalid">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                </div>
+                <h5 id="successfulSignUp" style="display: none;">You are successfully sign up , now you can login </h5>
+                <button class=" btn btn-primary" type="button" onclick="validateAndSubmit()">Submit form</button>
+            </form>
+        </div>
+
+
+        <!-- ------------------------------------------------------------------------------------------ -->
+        <!-- Login Page -->
+        <div id="login-page">
+            <h1 class="display-4 mt-4" id="log-in">Log in</h1>
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3 offset-3">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3 offset-3">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <div class="valid-feedback" id="loginEmailPasswordValid">
+                        Password Matched.....  Login Successfull
+                    </div>
+                    <div class="invalid-feedback" id="loginEmailPasswordInValid">
+                        Please enter correct email or password
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="validateEmailPassword()" type="button">Submit form</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="about-page">
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
