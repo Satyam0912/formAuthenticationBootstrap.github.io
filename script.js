@@ -341,7 +341,8 @@ function validateEmailPassword() {
         }
     }
     if (loginEmailFlag === false) {
-        console.log('Wrong Email or password!')
+        loginEmailPasswordValid.style.display = 'none';
+        loginEmailPasswordInValid.style.display = 'block';
         return;
     }
 
