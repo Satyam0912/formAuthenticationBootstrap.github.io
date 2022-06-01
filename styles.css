@@ -18,3 +18,9 @@
     padding: 50px;
     text-align: center;
 }
+
+#validAlert,
+#inValidAlert {
+    display: none;
+    margin: 20px;
+}

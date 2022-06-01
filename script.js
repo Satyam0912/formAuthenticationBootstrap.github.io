@@ -23,6 +23,8 @@ let homePage = document.getElementById('home-page');
 let signupPage = document.getElementById('signup-page');
 let loginPage = document.getElementById('login-page');
 
+let validAlert = document.getElementById('validAlert');
+let inValidAlert = document.getElementById('inValidAlert');
 
 function changeActiveNavLink(navLinkClicked) {
     homeNavLink.classList.remove('active');
@@ -38,21 +40,31 @@ function changeActiveNavLink(navLinkClicked) {
     switch (navLinkClicked) {
         case 'HOME':
             homeNavLink.classList.add('active');
-            homePage.style.display = 'block'
+            homePage.style.display = 'block';
+            inValidAlert.style.display = 'none';
+            validAlert.style.display = 'none';
             break;
         case 'SIGNUP':
             signupNavLink.classList.add('active');
-            signupPage.style.display = 'block'
+            signupPage.style.display = 'block';
+            inValidAlert.style.display = 'none';
+            validAlert.style.display = 'none';
             break;
         case 'LOGIN':
             loginNavLink.classList.add('active');
-            loginPage.style.display = 'block'
+            loginPage.style.display = 'block';
+            inValidAlert.style.display = 'none';
+            validAlert.style.display = 'none';
             break;
         case 'ABOUT':
             aboutNavLink.classList.add('active');
+            inValidAlert.style.display = 'none';
+            validAlert.style.display = 'none';
             break;
         case 'CONTACTS':
             contactNavLink.classList.add('active');
+            inValidAlert.style.display = 'none';
+            validAlert.style.display = 'none';
             break;
     }
 }
@@ -311,6 +323,9 @@ function validateAndSubmit() {
             userData.push(userObjData);
             console.log(userData);
             successfulSignUp.style.display = 'block';
+            validAlert.innerText = 'You SignUp Successfully!'
+            inValidAlert.style.display = 'none';
+            validAlert.style.display = 'block';
         }
         else {
             validateFirstName();
@@ -324,6 +339,9 @@ function validateAndSubmit() {
     }
     else {
         signUpTnCInvalid.style.display = 'block';
+        inValidAlert.innerText = 'Please Enter All Input Field Correctly!'
+        validAlert.style.display = 'none';
+        inValidAlert.style.display = 'block';
     }
 }
 
@@ -342,6 +360,9 @@ function validateEmailPassword() {
     }
     if (loginEmailFlag === false) {
         loginEmailPasswordValid.style.display = 'none';
+        validAlert.style.display = 'none';
+        inValidAlert.innerText = 'Please Enter correct Email and Password!';
+        inValidAlert.style.display = 'block';
         loginEmailPasswordInValid.style.display = 'block';
         return;
     }
@@ -355,9 +376,15 @@ function validateEmailPassword() {
     if (decodePassword(userData[index].password) === loginPassword.value) {
         loginEmailPasswordInValid.style.display = 'none';
         loginEmailPasswordValid.style.display = 'block';
+        inValidAlert.style.display = 'none';
+        validAlert.innerText = 'You Login Successfully';
+        validAlert.style.display = 'block';
     }
     else {
         loginEmailPasswordValid.style.display = 'none';
+        validAlert.style.display = 'none';
+        inValidAlert.innerText = 'Please Enter correct Email and Password!';
+        inValidAlert.style.display = 'block';
         loginEmailPasswordInValid.style.display = 'block';
     }
 }
